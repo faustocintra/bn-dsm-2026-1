@@ -49,7 +49,7 @@ model Fornecedor {
   num_imovel        String
   complemento       String?
   bairro            String
-  municipio         String
+  municipio         StrQing
   uf                String
   cep               String
   telefone          String
