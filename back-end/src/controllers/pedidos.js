@@ -32,15 +32,16 @@ controller.retrieveAll = async function(req, res) {
 
     const include = includeRelations(req.query)
 
+    
+
     // Manda buscar todas os pedidos cadastradas no BD
-    const result = await prisma.pedido.findMany({
-      include,
-      orderBy: [ { num_pedido: 'asc' }]  // Ordem ASCendente
-    })
+    const pedidos = await prisma.pedido.findMany({
+    include:{cliente:true,itens:{include:{produto:true}}}
+})
 
     // Retorna os dados obtidos ao cliente com o status
     // HTTP 200: OK (implícito)
-    res.send(result)
+    res.send(pedidos)
   }
   catch(error) {
     // Algo deu errado: exibe o erro no terminal
