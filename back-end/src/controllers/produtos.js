@@ -9,6 +9,7 @@ controller.create = async function(req, res) {
     const novoProduto = await prisma.produto.create({ 
       data: req.body,
       include: {
+        categoria: true,
         fornecedores: true
       }
     })
@@ -96,6 +97,7 @@ controller.update = async function(req, res) {
     if(req.body.fornecedor_ids) {
       // Primeiro, atualiza o produto
       await prisma.produto.update({
+      const updatedProduto = await prisma.produto.update({
         where: { id: req.params.id },
         data: req.body,
         include: { fornecedores: true }
