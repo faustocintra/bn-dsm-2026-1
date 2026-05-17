@@ -96,6 +96,7 @@ controller.update = async function(req, res) {
     // Se houver fornecedor_ids no body da requisição
     if(req.body.fornecedor_ids) {
       // Primeiro, atualiza o produto
+      await prisma.produto.update({
       const updatedProduto = await prisma.produto.update({
         where: { id: req.params.id },
         data: req.body,
